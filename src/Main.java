@@ -1,11 +1,16 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         printSeparator(0);
-        task1(2004);
+        findOutTheLeapYear(2004);
         printSeparator(1);
-        task2(0,2013);
+
+        offerALiteVersion(0,2013);
         printSeparator(2);
-        System.out.println(task3(73));
+
+        String deliveryDay = calculateTheDeliveryDay(73);
+        System.out.println(deliveryDay);
         printSeparator(3);
     }
 
@@ -17,7 +22,8 @@ public class Main {
         }
     }
 
-    public static void task1(int year){
+    //Task#1
+    public static void findOutTheLeapYear(int year){
         var result = "";
         if (year>1584 && year%4==0 && (year%100!=0 || year%400==0)){
             result = " год — високосный год.";
@@ -27,8 +33,10 @@ public class Main {
         System.out.println(year +result);
     }
 
-    public static void task2(int os, int clientDeviceYear){
-        if (clientDeviceYear<2015){ //Если год выпуска раньше 2015
+    //Task#2
+    public static void offerALiteVersion(int os, int clientDeviceYear){
+        if (clientDeviceYear<LocalDate.now().getYear()){
+            //Если год выпуска меньше нынешнего
             switch (os){
                 case 0: //и ОС - iOS
                     System.out.println("Установите облегченную версию "
@@ -41,7 +49,7 @@ public class Main {
                 default:
                     System.out.println("Операционная система не определена.");
             }
-        }else{ //Если год выпуска позже или равен 2015
+        }else{ //Если год выпуска больше или равен нынешнему
             switch (os){
                 case 0: //и ОС - iOS
                     System.out.println("Установите версию приложения для iOS по ссылке.");
@@ -56,7 +64,8 @@ public class Main {
         }
     }
 
-    public static String task3(int deliveryDistance) {
+    //Task#3
+    public static String calculateTheDeliveryDay(int deliveryDistance) {
         String result;
         if (deliveryDistance < 20) {
             result = "1";
